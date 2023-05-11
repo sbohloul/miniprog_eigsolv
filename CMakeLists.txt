@@ -16,7 +16,7 @@ endif()
 project(
     mini_prog
     VERSION 0.1.0
-    LANGUAGES Fortran
+    LANGUAGES Fortran CXX
 )
 
 # =======
@@ -47,7 +47,7 @@ set(SCALAPACK_LINK_DIR ${SCALAPACK_ROOT})
 # elseif(CMAKE_Fortran_COMPILER_ID MATCHES "GNU")
 # message(STATUS "XXX GNU")
 # endif()
-find_package(MPI REQUIRED COMPONENTS Fortran)
+find_package(MPI REQUIRED COMPONENTS Fortran CXX)
 
 # =======
 # Options
