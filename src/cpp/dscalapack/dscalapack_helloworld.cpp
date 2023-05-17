@@ -12,6 +12,9 @@ extern "C"
     void Cigerv2d(int, int, int, int *, int, int, int);
     void Cigesd2d(int, int, int, int *, int, int, int);
     void Cblacs_pcoord(int, int, int *, int *);
+
+    // int blacs_pnum_(int const &ictxt, int const &myprow, int const &mypcol);
+    int blacs_pnum_(int const *, int const *, int const *);
 }
 
 int main(int argc, char **argv)
@@ -44,8 +47,11 @@ int main(int argc, char **argv)
     if (myprow >= 0 && mypcol >= 0)
     {
         // Get my process number
-        int icaller;
+        int icaller, icaller_2;
         icaller = Cblacs_pnum(ictxt, myprow, mypcol);
+        icaller_2 = blacs_pnum_(&ictxt, &myprow, &mypcol);
+
+        std::cout << "icaller 2: " << icaller_2 << std::endl;
 
         // Process {0,0} receives check-in messages
         if (myprow == 0 && mypcol == 0)
