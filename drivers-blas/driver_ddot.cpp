@@ -11,20 +11,20 @@ extern "C"
 int main(int argc, char **argv)
 {
 
-    int M = 1;
     int N = 4;
 
-    MatrixV<double> v1(M, N);
-    MatrixV<double> v2(M, N);
+    VectorV<double> v1(N);
+    VectorV<double> v2(N);
 
     // initialize vectors
-    for (int i = 0; i < M; i++)
+    for (int i = 0; i < N; i++)
     {
-        for (int j = 0; j < N; j++)
-        {
-            v1(i, j) = 1.0;
-            v2(i, j) = 2.0;
-        }
+        v1(i) = 1.0;
+    }
+
+    for (int i = 0; i < size(v2); i++)
+    {
+        v2.data()[i] = 2.0;
     }
 
     // print vectors
@@ -33,6 +33,7 @@ int main(int argc, char **argv)
     cout << v1.data() << endl;
     cout << v2.data() << endl;
 
+    // reference result
     double d1 = 0.0;
     for (int i = 0; i < N; i++)
     {
@@ -40,6 +41,7 @@ int main(int argc, char **argv)
     }
     cout << "d1 = " << d1 << endl;
 
+    // call blas
     double d2 = cblas_ddot(N, v1.data(), 1, v2.data(), 1);
     cout << "d2 = " << d2 << endl;
     return 0;
