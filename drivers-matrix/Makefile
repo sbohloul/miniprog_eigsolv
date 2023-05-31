@@ -1,7 +1,9 @@
-CXX = g++
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 EXES = $(SRCS:.cpp=.x)
+
+CXX = g++
+CXXFLAGS = -g
 
 INCS = -I./../utils-matrix
 
