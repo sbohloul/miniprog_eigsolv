@@ -29,13 +29,13 @@ VectorP<T>::~VectorP(){};
 template <typename T>
 T &VectorP<T>::operator()(size_t j)
 {
-    return VectorP<T>::operator()(0, j);
+    return MatrixP<T>::operator()(0, j);
 }
 
 template <typename T>
 const T &VectorP<T>::operator()(size_t j) const
 {
-    return VectorP<T>::operator()(0, j);
+    return MatrixP<T>::operator()(0, j);
 }
 
 #endif /*__VECTOR_P_HVectorP<T>::PP__*/
