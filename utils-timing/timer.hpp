@@ -6,24 +6,21 @@
 class Timer
 {
 public:
+    Timer() : startTime(), stopTime(){};
+
     void start();
     void stop();
     double duration() const;
 
 private:
-    std::chrono::time_point<std::chrono::high_resolution_clock> startTime;
-    std::chrono::time_point<std::chrono::high_resolution_clock> stopTime;
+    typedef std::chrono::time_point<std::chrono::high_resolution_clock> time_t;
+    time_t startTime;
+    time_t stopTime;
 };
 
-void Timer::start()
-{
-    startTime = std::chrono::high_resolution_clock::now();
-};
+void Timer::start() { startTime = std::chrono::high_resolution_clock::now(); }
 
-void Timer::stop()
-{
-    stopTime = std::chrono::high_resolution_clock::now();
-};
+void Timer::stop() { stopTime = std::chrono::high_resolution_clock::now(); }
 
 double Timer::duration() const
 {

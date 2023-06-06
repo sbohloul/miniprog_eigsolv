@@ -47,6 +47,11 @@ extern "C"
                      const double beta,
                      double *y, const int incy);
 
+    void cblas_daxpy(const int n,
+                     const double a,
+                     const double *x, const int incx,
+                     const double *y, const int incy);
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus*/

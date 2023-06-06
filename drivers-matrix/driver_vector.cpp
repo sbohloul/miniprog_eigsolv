@@ -1,36 +1,48 @@
 #include <iostream>
-#include <matrix.hpp>
+#include <matrixutils.hpp>
 
 using namespace std;
 
-int main(int argc, char **argv)
+int main()
 {
+    int N = 5;
+    Vector<int> v(N);
 
-    int M1{3};
-    VectorV<int> vwv_int(M1);
+    cout << "num_rows()" << endl;
+    cout << v.num_rows() << endl;
 
-    for (int i = 0; i < size(vwv_int); i++)
+    for (int i = 0; i < N; i++)
     {
-        cout << i << endl;
-        vwv_int(i) = i;
+        v(i) = i;
     }
 
-    int M2{4};
-    VectorV<double> vwv_dbl(M2);
-    for (int i = 0; i < size(vwv_dbl); i++)
-    {
-        vwv_dbl(i) = static_cast<double>(i) / 10.0;
-    }
+    cout << "v(2)" << endl;
+    cout << v(2) << endl;
 
-    cout << vwv_int;
-    cout << vwv_dbl;
+    cout << v;
+    cout << "&v " << &v << endl;
 
-    int *data = vwv_int.data();
-    for (int i = 0; i < size(vwv_int); i++)
+    Vector<int> v2(N);
+
+    for (int i = 0; i < N; i++)
     {
-        data[i] += 1;
+        v2.data()[i] = 1;
     }
-    cout << vwv_int;
+    cout << v2;
+    cout << "&v2 " << &v2 << endl;
+
+    v2 = v;
+
+    cout << "&v2 " << &v2 << endl;
+    cout << v2;
+
+    v2 = v + v;
+    cout << "&v2 " << &v2 << endl;
+    cout << v2;
+
+    v2 = v + v + v2;
+    cout << "&v2 " << &v2 << endl;
+    cout << v2;
 
     return 0;
 }

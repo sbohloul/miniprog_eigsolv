@@ -5,7 +5,7 @@ EXES = $(SRCS:.cpp=.x)
 CXX = g++
 CXXFLAGS = -g
 
-INCS = -I./../utils-matrix
+INCS = -I./../utils-matrix-3
 
 all: $(EXES)
 

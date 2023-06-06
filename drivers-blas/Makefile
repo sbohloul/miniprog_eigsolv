@@ -1,4 +1,5 @@
 CXX = g++
+CXXFLAGS = -std=c++11
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 EXES = $(SRCS:.cpp=.x)
@@ -6,7 +7,7 @@ EXES = $(SRCS:.cpp=.x)
 OPENBLAS_LIB = /home/sbohloul/.local/openblas/0.3.21/lib
 OPENBLAS_INC = /home/sbohloul/.local/openblas/0.3.21/include
 
-INCS = -I./../utils-matrix
+INCS = -I./../utils-matrix -I./../utils-blas
 
 ifdef USE_MKL
 	CXXFLAGS += -DUSE_MKL

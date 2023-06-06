@@ -1,48 +1,40 @@
 #include <iostream>
 #include <matrix.hpp>
+#include <blas.h>
 
 using namespace std;
 
-extern "C"
-{
-    double cblas_ddot(const int n, const double *x, const int incx, const double *y, const int incy);
-}
+// extern "C"
+// {
+//     double cblas_ddot(const int n, const double *x, const int incx, const double *y, const int incy);
+// }
 
 int main(int argc, char **argv)
 {
 
-    int N = 4;
+    const int N = 5;
 
-    VectorV<double> v1(N);
-    VectorV<double> v2(N);
-
-    // initialize vectors
-    for (int i = 0; i < N; i++)
-    {
-        v1(i) = 1.0;
-    }
-
-    for (int i = 0; i < size(v2); i++)
-    {
-        v2.data()[i] = 2.0;
-    }
+    Vector<double> v1(N, 1.0);
+    Vector<double> v2(N, 2.0);
 
     // print vectors
+    cout << "v1 = " << endl;
     cout << v1;
+    cout << "v2 = " << endl;
     cout << v2;
-    cout << v1.data() << endl;
-    cout << v2.data() << endl;
 
     // reference result
-    double d1 = 0.0;
+    double ref_result{0.0};
     for (int i = 0; i < N; i++)
     {
-        d1 += v1.data()[i] * v2.data()[i];
+        ref_result += v1(i) * v2(i);
     }
-    cout << "d1 = " << d1 << endl;
+    cout << "<v1|v2>" << endl;
+    cout << "ref_result = " << ref_result << endl;
 
     // call blas
-    double d2 = cblas_ddot(N, v1.data(), 1, v2.data(), 1);
-    cout << "d2 = " << d2 << endl;
+    double results = cblas_ddot(N, v1.data(), 1, v2.data(), 1);
+    cout << "results = " << results << endl;
+
     return 0;
 }
