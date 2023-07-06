@@ -1,0 +1,50 @@
+Warning: Sanitizing vector length to a multiple of the loop stride 16 and thread count 16 from 250000000 elements (2000000000 bytes) to 249999872 elements (1999998976 bytes)
+Allocate: Process running on hwthread 0 (Domain N) - Vector length 249999872/1999998976 Offset 0 Alignment 512
+Initialization: Each thread in domain initializes its own stream chunks
+--------------------------------------------------------------------------------
+LIKWID MICRO BENCHMARK
+Test: load_avx
+--------------------------------------------------------------------------------
+Using 1 work groups
+Using 16 threads
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Group: 0 Thread 6 Global Thread 6 running on hwthread 3 - Vector length 15624992 Offset 93749952
+Group: 0 Thread 7 Global Thread 7 running on hwthread 11 - Vector length 15624992 Offset 109374944
+Group: 0 Thread 11 Global Thread 11 running on hwthread 13 - Vector length 15624992 Offset 171874912
+Group: 0 Thread 10 Global Thread 10 running on hwthread 5 - Vector length 15624992 Offset 156249920
+Group: 0 Thread 9 Global Thread 9 running on hwthread 12 - Vector length 15624992 Offset 140624928
+Group: 0 Thread 1 Global Thread 1 running on hwthread 8 - Vector length 15624992 Offset 15624992
+Group: 0 Thread 12 Global Thread 12 running on hwthread 6 - Vector length 15624992 Offset 187499904
+Group: 0 Thread 8 Global Thread 8 running on hwthread 4 - Vector length 15624992 Offset 124999936
+Group: 0 Thread 0 Global Thread 0 running on hwthread 0 - Vector length 15624992 Offset 0
+Group: 0 Thread 13 Global Thread 13 running on hwthread 14 - Vector length 15624992 Offset 203124896
+Group: 0 Thread 15 Global Thread 15 running on hwthread 15 - Vector length 15624992 Offset 234374880
+Group: 0 Thread 14 Global Thread 14 running on hwthread 7 - Vector length 15624992 Offset 218749888
+Group: 0 Thread 5 Global Thread 5 running on hwthread 10 - Vector length 15624992 Offset 78124960
+Group: 0 Thread 4 Global Thread 4 running on hwthread 2 - Vector length 15624992 Offset 62499968
+Group: 0 Thread 3 Global Thread 3 running on hwthread 9 - Vector length 15624992 Offset 46874976
+Group: 0 Thread 2 Global Thread 2 running on hwthread 1 - Vector length 15624992 Offset 31249984
+--------------------------------------------------------------------------------
+Cycles:			57324249488
+CPU Clock:		2495988082
+Cycle Clock:		2495988082
+Time:			2.296656e+01 sec
+Iterations:		4096
+Iterations per thread:	256
+Inner loop executions:	976562
+Size (Byte):		1999998976
+Size per thread:	124999936
+Number of Flops:	0
+MFlops/s:		0.00
+Data volume (Byte):	511999737856
+MByte/s:		22293.27
+Cycles per update:	0.895692
+Cycles per cacheline:	7.165535
+Loads per update:	1
+Stores per update:	0
+Load bytes per element:	8
+Store bytes per elem.:	0
+Instructions:		27999985680
+UOPs:			23999987712
+--------------------------------------------------------------------------------

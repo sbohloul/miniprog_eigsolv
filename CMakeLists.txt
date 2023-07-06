@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
-# ======================
-# Do not build in source
-# ======================
+# =====================
+# don't build in source
+# =====================
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
     message(FATAL_ERROR
         "Building in source directory is not allowed. Pleas remove CMakeCache.txt and CMakeFiles/, 
@@ -10,101 +10,123 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
     )
 endif()
 
-# =======
-# Project
-# =======
+# ==================
+# project descrption
+# ==================
 project(
-    mini_prog
+    mini_eigsolv
     VERSION 0.1.0
-    LANGUAGES Fortran CXX
+    LANGUAGES CXX
 )
 
 # =======
-# Options
+# Python3
 # =======
-# option(USE_MKL "Use MKL for linear algebra" OFF)
-# option(USE_NETLIB "Use NETLIB for scalapack" OFF)
-# option(USE_OPENBLAS "Use OPENBLAS for linear algebra" OFF)
+# find_package(Python3 REQUIRED COMPONENTS Interpreter)
+execute_process(
+    COMMAND bash -c "which python3"
+    OUTPUT_VARIABLE PYTHON3_EXECUTABLE
+    RESULT_VARIABLE EXIT_CODE_PYTHON3
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+if(EXIT_CODE_PYTHON3 EQUAL 0)
+    string(REGEX REPLACE "/bin/python3$" "" PYTHON3_PATH ${PYTHON3_EXECUTABLE})
+    message(STATUS "PYTHON3_PATH ${PYTHON3_PATH}")
+else()
+    message(FATAL_ERROR "python was not found")
+endif()
+
+set(PYTHON3_LIBRARY ${PYTHON3_PATH}/lib)
+set(PYTHON3_INCLUDE_DIR $${PYTHON3_PATH}/include)
+
+# python3 extension suffix
+execute_process(
+    COMMAND python3-config --extension-suffix
+    OUTPUT_VARIABLE PYTHON3_EXTENSION_SUFFIX
+    RESULT_VARIABLE EXIT_CODE_PYTHON3_EXTENSION_SUFFIX
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+if(NOT EXIT_CODE_PYTHON3_EXTENSION_SUFFIX EQUAL 0)
+    message(FATAL_ERROR "python3-config --extension-suffix didn't return successfuly")
+else()
+    message(STATUS "PYTHON3_EXTENSION_SUFFIX ${PYTHON3_EXTENSION_SUFFIX}")
+endif()
+
+# ========
+# Pybind11
+# ========
+# find_package(pybind11)
+execute_process(
+    COMMAND ${PYTHON3_EXECUTABLE} -c "import pybind11"
+    RESULT_VARIABLE EXIT_CODE_IMPORT_PYBIND11
+)
+
+if(NOT ${EXIT_CODE_IMPORT_PYBIND11} EQUAL 0)
+    message(FATAL_ERROR "Python does not have pybind11")
+endif()
+
+execute_process(
+    COMMAND ${PYTHON3_EXECUTABLE} -m pybind11 --includes
+    OUTPUT_VARIABLE PYBIND11_INCLUDE_DIR
+    RESULT_VARIABLE EXIT_CODE_PYBIND11_INCLUDES
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+if(EXIT_CODE_PYBIND11_INCLUDES EQUAL 0)
+    string(REGEX REPLACE "-I" "" PYBIND11_INCLUDE_DIR ${PYBIND11_INCLUDE_DIR})
+    string(REGEX REPLACE " " ";" PYBIND11_INCLUDE_DIR ${PYBIND11_INCLUDE_DIR})
+    message(STATUS "PYBIND11_INCLUDE_DIR ${PYBIND11_INCLUDE_DIR}")
+else()
+    message(FATAL_ERROR "Pybind11 includes not found")
+endif()
+
+set(CXX_PYBIND11_COMPILE_OPTIONS
+    -shared
+    -fPIC
+    CACHE STRING "c++ compile flags for pybind11")
+
+# ===
+# CXX
+# ===
+# set(CMAKE_CXX_STANDARD 11)
+# set(CMAKE_CXX_EXTENSIONS OFF)
+# set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# =======
+# options
+# =======
+option(USE_MKL "Use MKL for linear algebra" OFF)
+option(USE_OPENBLAS "Use OpenBLAS for linear algebra" OFF)
+
+# =================
+# install variables
+# =================
+set(INSTALL_BIN_DIR bin)
+set(INSTALL_LIB_DIR lib)
+set(INSTALL_INCLUDE_DIR include)
+set(CMAKE_EXECUTABLE_SUFFIX ".x" CACHE STRING "Executable suffix")
+
+# set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install" CACHE PATH "Installation directory")
 
 # if(USE_MKL)
-# set(SCALAPACK_LINK_LIB ${MKL_IMPORTED_TARGETS})
-# set(SCALAPACK_LINK_DIR ${MKL_ROOT})
-# elseif(USE_NETLIB)
-# set(SCALAPACK_LINK_LIB "scalapack")
-# set(SCALAPACK_LINK_DIR ${MKL_ROOT})
-# endif()
-set(SCALAPACK_ROOT "/home/sbohloul/.local/scalapack/2.2.0")
-set(SCALAPACK_LINK_LIB "scalapack")
-set(SCALAPACK_LINK_DIR ${SCALAPACK_ROOT})
-
-# if(NOT CMAKE_Fortran_COMPILER)
-# message(FATAL_ERROR
-# "Fortran compiler not specified, use CMAKE_Fortran_COMPILER variable to set it.")
-# endif()
-# enable_language(Fortran)
-# if(CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
-# message(STATUS "XXX INTEL")
-# elseif(CMAKE_Fortran_COMPILER_ID MATCHES "GNU")
-# message(STATUS "XXX GNU")
-# endif()
-find_package(MPI REQUIRED COMPONENTS Fortran CXX)
-
-# =======
-# Options
-# =======
-option(SCALAPACK_PATH "Path to scalapack library" OFF)
-option(MKL_PATH "Path to mkl" ON)
-
-if(SCALAPACK_PATH)
-    message(STATUS "scalapack path: ${SCALAPACK_PATH}")
-else()
-    message(STATUS "scalapack path not set")
-endif()
-
-# option(${PROJECT_NAME}_USE_XXX " Add a XXX target to use XXX " OFF)
-# option(${PROJECT_NAME}_USE_XXX " Add a YYY target to use YYY " OFF)
-# message(STATUS " Fortran compiler ${CMAKE_Fortran_COMPILER} ")
-# message(STATUS " Fortran compiler id ${CMAKE_Fortran_COMPILER_ID} ")
-# message(STATUS " Fortran flags ${CMAKE_Fortran_FLAGS} ")
-# message(STATUS " Fortran min flags ${CMAKE_Fortran_MIN_FLAGS} ")
-# set(CMAKE_PREFIX_PATH ${MKL_PATH} ${CMAKE_CMAKE_PREFIX_PATH})
-find_package(MKL CONFIG)
-
-if(MKL_FOUND)
-    message(STATUS " MKL is found ")
-    message(STATUS "${MKL_IMPORTED_TARGETS}")
-else()
-    message(STATUS " MKL is not found ")
-endif()
-
-message(STATUS " ================================================ ")
-message(STATUS " ")
-
-# if(MPI_FOUND)
-# endif()
-
-# find_package(MKL REQUIRED)
-
-# if(MKL_FOUND)
-# message(STATUS " MKL is found ")
+# find_package(MKL CONFIG REQUIRED)
+# set(BLAS_LIB MKL::BLAS)
+# elseif(USE_OPENBLAS)
+# find_package(OPENBLAS CONFIG REQUIRED)
+# set(BLAS_LIB ${OpenBLAS_LIBRARIES})
 # else()
-# message((WARNING " MKL not found "))
+# message(FATAL_ERROR
+# "No linear algebra library specified")
 # endif()
 
-# Test a simple command with mpi
-set(MPIEXEC_NUMPROCS 2)
-message(STATUS " Run: ${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} ${MPIEXEC_NUMPROCS} ${MPIEXEC_PREFLAGS} hostname ${MPIEXEC_POSTFLAGS} ")
-execute_process(COMMAND ${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} ${MPIEXEC_NUMPROCS} ${MPIEXEC_PREFLAGS} hostname ${MPIEXEC_POSTFLAGS}
-    RESULT_VARIABLE CHECK_MPI_RESULT
-    OUTPUT_QUIET ERROR_QUIET)
+# print
+message(STATUS "BLAS_LIB ${BLAS_LIB}")
+message(STATUS "BLAS_DIR ${BLAS_DIR}")
 
-if(CHECK_MPI_RESULT EQUAL 0)
-    message(STATUS " MPI command works succesfully. ")
-else()
-    message(FATAL_ERROR " MPI command failed. ")
-endif()
-
-# ==================
-# Add subdirectories
-# ==================
+# add directories
 add_subdirectory(src)
+add_subdirectory(tests)
+
+# install(FILES MathFunctions.h DESTINATION include)

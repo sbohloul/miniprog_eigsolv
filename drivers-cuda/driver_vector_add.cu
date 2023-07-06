@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 
     // call kernel
 
-        vectorAdd<<<numBlocks, numThreadsInBlock>>>(d_a, d_b, d_c, numElements);
+    vectorAdd<<<numBlocks, numThreadsInBlock>>>(d_a, d_b, d_c, numElements);
     cudaDeviceSynchronize();
     // copy to host
     cudaMemcpy(h_c.data(), d_c, numElements * sizeof(double), cudaMemcpyDeviceToHost);

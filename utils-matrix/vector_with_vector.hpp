@@ -14,6 +14,8 @@ private:
 public:
     Vector(size_t rows) : rows_(rows), data_(rows) {}
     Vector(size_t rows, T init) : rows_(rows), data_(rows, init) {}
+    Vector(size_t rows, T *init) : rows_(rows), data_(init, init + rows) {}
+
     ~Vector() {}
 
     size_t num_rows() const { return rows_; };

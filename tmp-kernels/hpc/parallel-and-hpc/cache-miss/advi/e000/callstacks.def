@@ -1,0 +1,29 @@
+# callstacks file version: 8
+#    rowid	    parent	       rva	 loop	 system	                                function	binary	instance_start_rva	instance_size	instance_end_rva	finst_rowid	roi	is_inlined	jit_method_id	tripcounts_roi	flops_roi	cachesim_roi	data_transfer_roi	projection_roi
+         1	        -1	      5648	    0	      0	                                  _start	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	5648	47	0	1	0	0	0	0	0	0	0	0
+         2	        -1	    123607	    0	      1	                                 [stack]	[stack]	0	0	0	6	0	0	0	0	0	0	0	0
+         3	         2	      5693	    0	      0	                                  _start	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	5648	47	0	1	0	0	0	0	0	0	0	0
+         4	        16	    147586	    1	      1	 [Loop at line 261 in __libc_start_main]	/lib/x86_64-linux-gnu/libc.so.6	147446,147688	228,139	0	8	0	0	0	0	0	0	0	0
+         5	        19	      5104	    1	      0	               [Loop at line 40 in main]	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	5104	13	5117	2	0	0	0	0	0	0	0	0
+         6	        19	      5112	    1	      0	               [Loop at line 40 in main]	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	5104	13	5117	2	0	0	0	0	0	0	0	0
+         7	        19	      5108	    1	      0	               [Loop at line 40 in main]	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	5104	13	5117	2	0	0	0	0	0	0	0	0
+         8	        18	      5127	    1	      0	               [Loop at line 37 in main]	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	5093,5403	198,163	5291,5571	4	0	0	0	0	0	0	0	0
+         9	         8	    905390	    0	      1	                    __GI___clock_gettime	/lib/x86_64-linux-gnu/libc.so.6	905360	119	0	10	0	0	0	0	0	0	0	0
+        10	        24	      5205	    1	      0	               [Loop at line 50 in main]	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	5176	39	5215	5	0	0	0	0	0	0	0	0
+        11	        18	      5139	    1	      0	               [Loop at line 37 in main]	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	5093,5403	198,163	5291,5571	4	0	0	0	0	0	0	0	0
+        12	        11	   2025088	    0	      0	                likwid_markerStartRegion	/home/sbohloul/.local/likwid/5.2.2/lib/liblikwid.so.5.2	2025088	836	0	7	0	0	0	0	0	0	0	0
+        13	        11	   2025112	    0	      0	                likwid_markerStartRegion	/home/sbohloul/.local/likwid/5.2.2/lib/liblikwid.so.5.2	2025088	836	0	7	0	0	0	0	0	0	0	0
+        14	         4	      5359	    0	      0	                                    main	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	4768	808	0	3	0	0	0	0	0	0	0	0
+        15	        14	   1149307	    0	      1	                                  munmap	/lib/x86_64-linux-gnu/libc.so.6	1149296	37	0	11	0	0	0	0	0	0	0	0
+        16	         3	    147446	    0	      1	                       __libc_start_main	/lib/x86_64-linux-gnu/libc.so.6	147344	483	0	9	0	0	0	0	0	0	0	0
+        17	         3	    147586	    0	      1	                       __libc_start_main	/lib/x86_64-linux-gnu/libc.so.6	147344	483	0	9	0	0	0	0	0	0	0	0
+        18	         4	      5093	    0	      0	                                    main	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	4768	808	0	3	0	0	0	0	0	0	0	0
+        19	        18	      5104	    1	      0	               [Loop at line 37 in main]	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	5093,5403	198,163	5291,5571	4	0	0	0	0	0	0	0	0
+        20	         4	      5104	    0	      0	                                    main	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	4768	808	0	3	0	0	0	0	0	0	0	0
+        21	         4	      5112	    0	      0	                                    main	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	4768	808	0	3	0	0	0	0	0	0	0	0
+        22	         4	      5108	    0	      0	                                    main	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	4768	808	0	3	0	0	0	0	0	0	0	0
+        23	         4	      5127	    0	      0	                                    main	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	4768	808	0	3	0	0	0	0	0	0	0	0
+        24	        18	      5176	    1	      0	               [Loop at line 37 in main]	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	5093,5403	198,163	5291,5571	4	0	0	0	0	0	0	0	0
+        25	         4	      5205	    0	      0	                                    main	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	4768	808	0	3	0	0	0	0	0	0	0	0
+        26	         4	      5139	    0	      0	                                    main	/home/sbohloul/Projects/hpc/parallel-and-hpc/cache-miss/kernel	4768	808	0	3	0	0	0	0	0	0	0	0
+        27	        -1	         0	    0	      0	                [Unknown stack frame(s)]	n/a	0	0	0	13	0	0	0	0	0	0	0	0

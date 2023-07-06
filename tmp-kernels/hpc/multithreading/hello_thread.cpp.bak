@@ -1,0 +1,49 @@
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <vector>
+
+std::mutex h_mutex;
+
+void hello_mutex_gaurded(size_t thread_idx)
+{
+    // std::cout << "hello_mutex_gaurded" << std::endl;
+
+    std::lock_guard<std::mutex> guard(h_mutex);
+    std::cout << "Hello from thread " << thread_idx << std::endl;
+}
+
+void hello_mutex(size_t thread_idx)
+{
+    // std::cout << "hello_mutex" << std::endl;
+
+    h_mutex.lock();
+    std::cout << "Hello from thread " << thread_idx << std::endl;
+    h_mutex.unlock();
+}
+
+void hello_naive(size_t thread_idx)
+{
+    // std::cout << "hello_naive" << std::endl;
+
+    std::cout << "Hello from thread " << thread_idx << std::endl;
+}
+
+int main()
+{
+    size_t n_threads = std::thread::hardware_concurrency();
+
+    std::vector<std::thread> threads;
+
+    for (size_t t = 0; t < n_threads; t++)
+    {
+        threads.push_back(std::thread(std::ref(hello_mutex_gaurded), t));
+    }
+
+    for (auto &t : threads)
+    {
+        t.join();
+    }
+
+    return 0;
+}
