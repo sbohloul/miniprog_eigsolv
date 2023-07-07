@@ -1,6 +1,5 @@
 #ifndef _BLAS_H_
 #define _BLAS_H_
-#endif
 
 #ifdef USE_MKL
 #include <mkl.h>
@@ -55,4 +54,6 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif /* __cplusplus*/
+
+#endif
 #endif
