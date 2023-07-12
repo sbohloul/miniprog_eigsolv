@@ -12,3 +12,5 @@ target_link_directories(driver_time_cblas_ddot
 
 install(TARGETS driver_time_cblas_ddot DESTINATION ${INSTALL_BIN_DIR})
 install(FILES bench_time_cblas_ddot.sh DESTINATION ${INSTALL_BIN_DIR})
+
+install(FILES bench_pybind11_time_cblas_ddot.py DESTINATION ${INSTALL_BIN_DIR})
