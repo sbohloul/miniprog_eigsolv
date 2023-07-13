@@ -82,10 +82,25 @@ else()
     message(FATAL_ERROR "Pybind11 includes not found")
 endif()
 
-set(CXX_PYBIND11_COMPILE_OPTIONS
-    -shared
-    -fPIC
-    CACHE STRING "c++ compile flags for pybind11")
+if(
+    CMAKE_CXX_COMPILER_ID STREQUAL "Intel" OR
+    CMAKE_CXX_COMPILER_ID STREQUAL "Clang"
+)
+    set(CXX_PYBIND11_COMPILE_OPTIONS
+        -fPIC
+        CACHE STRING "c++ compile flags for pybind11"
+    )
+
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    set(CXX_PYBIND11_COMPILE_OPTIONS
+        -shared
+        -fPIC
+        CACHE STRING "c++ compile flags for pybind11"
+    )
+else()
+    message(STATUS "CMAKE_CXX_COMPILER = " ${CMAKE_CXX_COMPILER})
+    message(FATAL_ERROR "CMAKE_CXX_COMPILER_ID " ${CMAKE_CXX_COMPILER_ID} " not supporterd")
+endif()
 
 # ===
 # CXX
