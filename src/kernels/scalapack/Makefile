@@ -31,6 +31,13 @@ test_blacs_utils.x :
 	$(CXX) $(CXXFLAGS) $(INCS) -o $@ blacs_utils.o test_blacs_utils.o $(LDFLAGS)
 
 
+test_blacs_hello.x :
+	$(CXX) $(CXXFLAGS) $(INCS) -c blacs_utils.cpp
+	$(CXX) $(CXXFLAGS) $(INCS) -c test_blacs_hello.cpp
+	$(CXX) $(CXXFLAGS) $(INCS) -o $@ blacs_utils.o test_blacs_hello.o $(LDFLAGS)
+
+
+
 
 clean:
 	rm -rf *.o *.x

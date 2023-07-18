@@ -9,10 +9,11 @@ extern "C"
     // Initialization
     void Cblacs_get(int icontxt, int what, int *val);
     void Cblacs_gridinit(int *icontxt, char *order, int nprow, int npcol);
-    void Cblacs_pinfo(int *rank, int *nprocs);
 
     // Information
     void Cblacs_gridinfo(int icontxt, int *nprow, int *npcol, int *myrow, int *mycol);
+    void Cblacs_pinfo(int *rank, int *nprocs);
+    void blacs_pcoord(const int *ConTxt, const int *nodenum, int *prow, int *pcol);
 
     // Destruction
     void Cblacs_gridexit(int icontxt);
@@ -28,6 +29,10 @@ extern "C"
                   const int *mb, const int *nb, const int *irsrc,
                   const int *icsrc, const int *ictxt, const int *lld,
                   int *info);
+
+    // send/recieve
+    void igerv2d(const int *ConTxt, const int *m, const int *n, int *A, const int *lda, const int *rsrc, const int *csrc);
+    void igesd2d(const int *ConTxt, const int *m, const int *n, int *A, const int *lda, const int *rdest, const int *cdest);
 
     // redist
     void Cpsgemr2d(int m, int n,
