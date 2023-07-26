@@ -8,10 +8,10 @@ INCS += -I/home/sbohloul/Projects/scicomp/miniprog_eigsolv/src/interfaces
 
 LDFLAGS = -L${MKLROOT}/lib/intel64 
 LDFLAGS += -lmkl_scalapack_lp64
+LDFLAGS += -lmkl_blacs_intelmpi_lp64
 LDFLAGS += -lmkl_intel_lp64 
 LDFLAGS += -lmkl_sequential 
 LDFLAGS += -lmkl_core 
-LDFLAGS += -lmkl_blacs_intelmpi_lp64
 LDFLAGS += -lpthread 
 LDFLAGS += -lm 
 # LDFLAGS += -ldl
@@ -24,20 +24,12 @@ UTILS = /home/sbohloul/Projects/scicomp/miniprog_eigsolv/src/utils/timer.cpp
 %.o : %.cpp
 	$(CXX) $(CXXFLAGS) $(INCS) -o $@ -c $< 
 
+test%.x : test%.o
+	$(CXX) $(CXXFLAGS) $(INCS) -o $@ blacs_utils.o $< $(LDFLAGS)
 
-test_blacs_utils.x :
+test%.o : test%.cpp
 	$(CXX) $(CXXFLAGS) $(INCS) -c blacs_utils.cpp
-	$(CXX) $(CXXFLAGS) $(INCS) -c test_blacs_utils.cpp
-	$(CXX) $(CXXFLAGS) $(INCS) -o $@ blacs_utils.o test_blacs_utils.o $(LDFLAGS)
-
-
-test_blacs_hello.x :
-	$(CXX) $(CXXFLAGS) $(INCS) -c blacs_utils.cpp
-	$(CXX) $(CXXFLAGS) $(INCS) -c test_blacs_hello.cpp
-	$(CXX) $(CXXFLAGS) $(INCS) -o $@ blacs_utils.o test_blacs_hello.o $(LDFLAGS)
-
-
-
+	$(CXX) $(CXXFLAGS) $(INCS) -c $<
 
 clean:
 	rm -rf *.o *.x

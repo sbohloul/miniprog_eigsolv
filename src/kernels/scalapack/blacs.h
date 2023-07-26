@@ -18,13 +18,22 @@ extern "C"
     // Destruction
     void Cblacs_gridexit(int icontxt);
     void Cblacs_exit(int doneflag);
+    void blacs_gridexit(int *ConTxt);
+    void blacs_exit(const int *notDone);
 
     //
     void Cblacs_barrier(int icontxt, char *scope);
+    void blacs_barrier(const int *ConTxt, const char *scope);
 
-    //
+    // local/global conversions
     int numroc(int *n, int *nb, int *iproc, int *isrcproc, int *nprocs);
+    // int indxl2g_(int indxloc, int nb, int iproc, int isrcproc, int nprocs);
+    int indxg2l_(int indxglob, int nb, int iproc, int isrcproc, int nprocs);
+    int indxg2p_(int indxglob, int nb, int iproc, int isrcproc, int nprocs);
 
+    int indxl2g_(int *indxloc, int *nb, int *iproc, int *isrcproc, int *nprocs);
+
+    // array desc
     void descinit(int *desc, const int *m, const int *n,
                   const int *mb, const int *nb, const int *irsrc,
                   const int *icsrc, const int *ictxt, const int *lld,

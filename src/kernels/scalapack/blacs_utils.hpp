@@ -1,10 +1,12 @@
 #ifndef _BLACS_UTILS_HPP_
 #define _BLACS_UTILS_HPP_
 
+#include <vector>
+
 class BlacsGrid
 {
 public:
-    BlacsGrid(int, char *, int, int);
+    BlacsGrid(int ctxt, char *order, int nprow, int npcol);
 
     int get_nprocs() const { return nprocs_; }
     int get_nprow() const { return nprow_; }
@@ -31,10 +33,10 @@ private:
     int csrcproc_ = 0;
 };
 
-class BlacsDistributedArray
+class BlacsArrayDescription
 {
 public:
-    BlacsDistributedArray(BlacsGrid *grid, int m, int n, int mb, int nb);
+    BlacsArrayDescription(BlacsGrid *grid, int m, int n, int mb, int nb);
 
     void get_desc(int *desc) const;
     int get_desctype() const { return desc_[0]; }
@@ -49,6 +51,7 @@ public:
     int get_col_src() const { return desc_[7]; }
     int get_lld() const { return desc_[8]; }
     int get_info() const { return info_; }
+    BlacsGrid *grid() const { return grid_; }
     // BlacsGrid *get_gird() const { return grid_; }
 
 private:
@@ -56,10 +59,30 @@ private:
     int info_;
     int ml_;
     int nl_;
-    // BlacsGrid *grid_;
+    BlacsGrid *grid_;
 
     int rsrc_ = 0;
     int csrc_ = 0;
+};
+
+class DistributedArray
+{
+public:
+    DistributedArray(BlacsArrayDescription *desc);
+
+    BlacsArrayDescription *get_desc() const { return desc_; }
+    BlacsGrid *get_grid() const { return desc_->grid(); }
+    const double *data() const { return data_.empty() ? 0 : &data_.front(); }
+    double *data() { return data_.empty() ? 0 : &data_.front(); }
+
+    int size() { return data_.size(); }
+    int get_nrow() { return desc_->local_size_row(); }
+    int get_ncol() { return desc_->local_size_col(); }
+    int get_lld() { return desc_->get_lld(); }
+
+private:
+    BlacsArrayDescription *desc_;
+    std::vector<double> data_;
 };
 
 #endif
