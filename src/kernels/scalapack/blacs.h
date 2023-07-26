@@ -6,12 +6,18 @@ extern "C"
 {
 #endif // __cplusplus
 
+#ifndef MKL_INT
+#define MKL_INT int
+#endif
+
     // Initialization
     void Cblacs_get(int icontxt, int what, int *val);
     void Cblacs_gridinit(int *icontxt, char *order, int nprow, int npcol);
 
     // Information
     void Cblacs_gridinfo(int icontxt, int *nprow, int *npcol, int *myrow, int *mycol);
+    void blacs_gridinfo(const MKL_INT *ConTxt, MKL_INT *nprow, MKL_INT *npcol, MKL_INT *myrow, MKL_INT *mycol);
+
     void Cblacs_pinfo(int *rank, int *nprocs);
     void blacs_pcoord(const int *ConTxt, const int *nodenum, int *prow, int *pcol);
 
@@ -64,6 +70,15 @@ extern "C"
                    const int *a, int ia, int ja, const int *desca,
                    int *b, int ib, int jb, const int *descb,
                    int ictxt);
+
+    // PBLAS
+    void pdgemm(const char *transa, const char *transb,
+                const int *m, const int *n, const int *k,
+                const double *alpha,
+                const double *a, const int *ia, const int *ja, const int *desca,
+                const double *b, const int *ib, const int *jb, const int *descb,
+                const double *beta,
+                double *c, const int *ic, const int *jc, const int *descc);
 
 #ifdef __cplusplus
 }
