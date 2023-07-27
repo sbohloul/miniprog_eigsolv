@@ -1,37 +1,10 @@
-#include <vector>
 #include <iostream>
 #include <cassert>
+#include "time_scalapack_kernels.hpp"
 #include "blacs.h"
-// #include "timer.hpp"
+#include "timer.hpp"
 
-void print_array(std::vector<double> a, int m, int n, int ld)
-{
-
-    for (int i = 0; i < m; i++)
-    {
-        std::cout << "[";
-        for (int j = 0; j < n; j++)
-        {
-            std::cout << a[j * ld + i];
-            if (j != n - 1)
-            {
-                std::cout << ", ";
-            }
-            else
-            {
-                std::cout << "]" << std::endl;
-            }
-        }
-    }
-}
-
-double time_scalapack_pdgemm(int niter,
-                             int nprow, int npcol,
-                             const std::vector<double> &a_glb,
-                             const std::vector<double> &b_glb,
-                             std::vector<double> &c_glb,
-                             int m, int n,
-                             int mb, int nb)
+double time_scalapack_pdgemm(int niter, int nprow, int npcol, const std::vector<double> &a_glb, const std::vector<double> &b_glb, std::vector<double> &c_glb, int m, int n, int mb, int nb)
 {
     assert(a_glb.size() == m * n);
     assert(b_glb.size() == m * n);
@@ -105,14 +78,14 @@ double time_scalapack_pdgemm(int niter,
               ctxt);
 
     // call pdgemm kernel
-    // Timer timer;
+    Timer timer;
     double alpha = 1.0;
     double beta = 0.0;
     int ia = 1, ja = 1;
     int ib = 1, jb = 1;
     int ic = 1, jc = 1;
 
-    // timer.start();
+    timer.start();
     for (int i = 0; i < niter; i++)
     {
         pdgemm("N", "N",
@@ -123,9 +96,9 @@ double time_scalapack_pdgemm(int niter,
                &beta,
                c_loc.data(), &ic, &jc, desc_loc);
     }
-    // timer.stop();
-    // double t_kernel = timer.duration();
-    double t_kernel = 1.0;
+    timer.stop();
+    double t_kernel = timer.duration();
+    // double t_kernel = 1.0;
 
     // gather local C in global C
     Cpdgemr2d(m, n,
@@ -137,53 +110,4 @@ double time_scalapack_pdgemm(int niter,
     Cblacs_exit(0);
 
     return t_kernel;
-}
-
-int main()
-{
-
-    int myrank, nprocs;
-    Cblacs_pinfo(&myrank, &nprocs);
-
-    int m = 5;
-    int n = 5;
-    int mb = 2;
-    int nb = 2;
-    int nprow = 2;
-    int npcol = 2;
-    int niter = 1;
-
-    std::vector<double> a(m * n);
-    std::vector<double> b(m * n);
-    std::vector<double> c(m * n);
-
-    for (int j = 0; j < n; j++)
-    {
-        for (int i = 0; i < m; i++)
-        {
-            a[j * m + i] = static_cast<double>(i);
-            b[j * m + i] = static_cast<double>(j);
-            c[j * m + i] = static_cast<double>(0);
-        }
-    }
-
-    if (myrank == 0)
-    {
-        std::cout << "a: " << std::endl;
-        print_array(a, m, n, m);
-        std::cout << "b: " << std::endl;
-        print_array(b, m, n, m);
-        std::cout << "c: " << std::endl;
-        print_array(c, m, n, m);
-    }
-
-    double t_kernel = time_scalapack_pdgemm(niter, nprow, npcol, a, b, c, m, n, mb, nb);
-
-    if (myrank == 0)
-    {
-        std::cout << "t_kernel = " << t_kernel << std::endl;
-        std::cout << "c: " << std::endl;
-        print_array(c, m, n, m);
-    }
-    return 0;
 }

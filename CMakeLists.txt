@@ -139,6 +139,8 @@ set(CMAKE_EXECUTABLE_SUFFIX ".x" CACHE STRING "Executable suffix")
 # print
 message(STATUS "BLAS_LIB ${BLAS_LIB}")
 message(STATUS "BLAS_DIR ${BLAS_DIR}")
+message(STATUS "SCALAPACK_LIB ${SCALAPACK_LIB}")
+message(STATUS "SCALAPACK_DIR ${SCALAPACK_DIR}")
 
 # add directories
 add_subdirectory(src)
