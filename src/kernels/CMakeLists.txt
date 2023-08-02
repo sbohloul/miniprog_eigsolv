@@ -1,20 +1,14 @@
-add_library(time_kernels OBJECT)
-target_sources(time_kernels
-    PRIVATE
-    time_blas_kernels.cpp
-    time_blas_kernels.hpp
-    time_scalapack_kernels.cpp
-    time_scalapack_kernels.hpp
-    PUBLIC
-    time_kernels.hpp
-)
+add_subdirectory(blas)
+add_subdirectory(scalapack)
+
+add_library(time_kernels INTERFACE)
 target_link_libraries(time_kernels
-    PRIVATE
-    utils
-    interfaces
+    INTERFACE
+    time_kernels_blas
+    time_kernels_scalapack
 )
 target_include_directories(time_kernels
-    PUBLIC
+    INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 

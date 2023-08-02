@@ -19,6 +19,19 @@ project(
     LANGUAGES CXX
 )
 
+# ===
+# CXX
+# ===
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# ===
+# MPI
+# ===
+set(MPI_CXX_SKIP_MPICXX ON)
+find_package(MPI REQUIRED COMPONENTS CXX)
+
 # =======
 # Python3
 # =======
@@ -101,13 +114,6 @@ else()
     message(STATUS "CMAKE_CXX_COMPILER = " ${CMAKE_CXX_COMPILER})
     message(FATAL_ERROR "CMAKE_CXX_COMPILER_ID " ${CMAKE_CXX_COMPILER_ID} " not supporterd")
 endif()
-
-# ===
-# CXX
-# ===
-# set(CMAKE_CXX_STANDARD 11)
-# set(CMAKE_CXX_EXTENSIONS OFF)
-# set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # =======
 # options
