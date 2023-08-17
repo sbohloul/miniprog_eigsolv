@@ -1,7 +1,6 @@
 #include <iostream>
-#include "time_kernels.hpp"
+#include "time_scalapack_kernels.hpp"
 #include "array_helper.hpp"
-#include "blacs.h"
 
 // prog.x niter m n mb nb nprow npcol
 int main(int argc, char **argv)

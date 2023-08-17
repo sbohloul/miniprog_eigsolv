@@ -4,7 +4,7 @@ add_executable(driver_time_blas_ddot
 )
 target_link_libraries(driver_time_blas_ddot
     PRIVATE
-    time_kernels
+    time_blas_kernels
 )
 install(
     TARGETS
@@ -20,7 +20,7 @@ install(
 )
 install(
     FILES
-    bench_pybind11_time_cblas_ddot.py
+    pydriver_time_cblas_ddot.py
     DESTINATION
     ${INSTALL_BIN_DIR}
 )
@@ -31,9 +31,7 @@ add_executable(driver_time_scalapack_pdgemm
 )
 target_link_libraries(driver_time_scalapack_pdgemm
     PRIVATE
-    time_kernels
-    utils
-    interfaces
+    time_scalapack_kernels
 )
 install(
     TARGETS
@@ -43,13 +41,13 @@ install(
 )
 install(
     FILES
-    bench_time_cblas_ddot.sh
+    bench_time_scalapack_pdgemm.sh
     DESTINATION
     ${INSTALL_BIN_DIR}
 )
 install(
     FILES
-    bench_pybind11_time_cblas_ddot.py
+    pydriver_time_scalapack_pdgemm.py
     DESTINATION
     ${INSTALL_BIN_DIR}
 )

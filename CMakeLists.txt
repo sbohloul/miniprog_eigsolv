@@ -29,8 +29,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # ===
 # MPI
 # ===
-set(MPI_CXX_SKIP_MPICXX ON)
+# set(MPI_CXX_SKIP_MPICXX ON)
 find_package(MPI REQUIRED COMPONENTS CXX)
+
+message(STATUS "MPI::MPI_CXX ${MPI_CXX_LIBRARIES}")
+message(STATUS "MPI::MPI_INC ${MPI_CXX_INCLUDE_DIRS}")
 
 # =======
 # Python3
@@ -100,6 +103,7 @@ if(
     CMAKE_CXX_COMPILER_ID STREQUAL "Clang"
 )
     set(CXX_PYBIND11_COMPILE_OPTIONS
+        -shared
         -fPIC
         CACHE STRING "c++ compile flags for pybind11"
     )
@@ -120,6 +124,16 @@ endif()
 # =======
 option(USE_MKL "Use MKL for linear algebra" OFF)
 option(USE_OPENBLAS "Use OpenBLAS for linear algebra" OFF)
+option(USE_NETLIB "Use netlib for linear algebra" OFF)
+message(STATUS "USE_MKL = " ${USE_MKL})
+message(STATUS "USE_OPENBLAS = " ${USE_OPENBLAS})
+message(STATUS "USE_NETLIB = " ${USE_NETLIB})
+
+if(USE_MKL)
+    add_compile_definitions(USE_MKL)
+elseif(USE_NETLIB)
+    add_compile_definitions(USE_NETLIB)
+endif()
 
 # =================
 # install variables

@@ -1,12 +1,12 @@
-import os
-import sys
+# import os
+# import sys
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-parent_dir = os.path.dirname(current_dir)
-parent_dir = parent_dir + "/lib"
-sys.path.append(parent_dir)
+# current_dir = os.path.dirname(os.path.abspath(__file__))
+# parent_dir = os.path.dirname(current_dir)
+# parent_dir = parent_dir + "/lib"
+# sys.path.append(parent_dir)
 
-import pybind11_time_kernels as tk
+import pb11_time_blas_kernels as tk
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -22,7 +22,7 @@ for n in range(stepsize, maxsize, stepsize):
     nelem.append(n)
     x = np.ones((1, n), dtype=np.float64)
     y = np.ones((1, n), dtype=np.float64)
-    t = tk.time_cblas_ddot(niter, x, y)
+    t = tk.pb11_time_cblas_ddot(niter, x, y)
     t_kernel.append(t)
     print(niter, "\t", n, "\t", t)
 
@@ -31,5 +31,3 @@ plt.xlabel('nelem')
 plt.ylabel('time(s)')
 plt.grid(True)
 plt.show()
-
-

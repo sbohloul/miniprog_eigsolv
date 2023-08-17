@@ -2,6 +2,9 @@
 #define _TIME_BLAS_KERNELS_HPP_
 
 #include <vector>
+#include "blas.h"
+#include "timer.hpp"
+#include <cassert>
 
 double time_cblas_ddot(const int niter, const std::vector<double> &x, const std::vector<double> &y);
 

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "time_kernels.hpp"
+#include "time_blas_kernels.hpp"
 
 int main(int argc, char **argv)
 {

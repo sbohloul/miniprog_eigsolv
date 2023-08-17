@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cassert>
 #include "time_scalapack_kernels.hpp"
-#include "blacs.h"
-#include "timer.hpp"
 
 double time_scalapack_pdgemm(int niter, int nprow, int npcol, const std::vector<double> &a_glb, const std::vector<double> &b_glb, std::vector<double> &c_glb, int m, int n, int mb, int nb)
 {
@@ -107,7 +105,7 @@ double time_scalapack_pdgemm(int niter, int nprow, int npcol, const std::vector<
               ctxt);
 
     // release blacs contexts
-    Cblacs_exit(0);
+    Cblacs_gridexit(ctxt);
 
     return t_kernel;
 }

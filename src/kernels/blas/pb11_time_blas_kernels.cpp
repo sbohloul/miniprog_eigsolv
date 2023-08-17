@@ -1,8 +1,6 @@
-#include <pybind11_time_blas_kernels.hpp>
+#include <pb11_time_blas_kernels.hpp>
 
-namespace py = pybind11;
-
-double pytime_cblas_ddot(int niter, py::array_t<double> x_pyarr, py::array_t<double> y_pyarr)
+double pb11_time_cblas_ddot(int niter, py::array_t<double> x_pyarr, py::array_t<double> y_pyarr)
 {
     py::buffer_info x_buf = x_pyarr.request();
     py::buffer_info y_buf = y_pyarr.request();

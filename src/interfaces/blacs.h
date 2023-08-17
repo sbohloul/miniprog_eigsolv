@@ -10,6 +10,16 @@ extern "C"
 #define MKL_INT int
 #endif
 
+#ifdef USE_MKL
+#define numroc numroc
+#define descinit descinit
+#define pdgemm pdgemm
+#elif defined(USE_NETLIB)
+#define numroc numroc_
+#define descinit descinit_
+#define pdgemm pdgemm_
+#endif
+
     // Initialization
     void Cblacs_get(int icontxt, int what, int *val);
     void Cblacs_gridinit(int *icontxt, char *order, int nprow, int npcol);

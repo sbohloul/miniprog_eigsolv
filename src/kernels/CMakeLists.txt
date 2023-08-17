@@ -1,16 +1,16 @@
 add_subdirectory(blas)
 add_subdirectory(scalapack)
 
-add_library(time_kernels INTERFACE)
-target_link_libraries(time_kernels
-    INTERFACE
-    time_kernels_blas
-    time_kernels_scalapack
-)
-target_include_directories(time_kernels
-    INTERFACE
-    ${CMAKE_CURRENT_SOURCE_DIR}
-)
+# add_library(time_kernels INTERFACE)
+# target_link_libraries(time_kernels
+# INTERFACE
+# time_kernels_blas
+# time_kernels_scalapack
+# )
+# target_include_directories(time_kernels
+# INTERFACE
+# ${CMAKE_CURRENT_SOURCE_DIR}
+# )
 
 # add_library(pybind11_time_kernels MODULE)
 # target_sources(pybind11_time_kernels

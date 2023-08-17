@@ -1,7 +1,4 @@
-#include <cassert>
 #include "time_blas_kernels.hpp"
-#include "blas.h"
-#include "timer.hpp"
 
 double time_cblas_ddot(int niter, std::vector<double> const &x, std::vector<double> const &y)
 {
