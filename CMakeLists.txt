@@ -98,6 +98,7 @@ else()
     message(FATAL_ERROR "Pybind11 includes not found")
 endif()
 
+# set pybind11 flags
 if(
     CMAKE_CXX_COMPILER_ID STREQUAL "Intel" OR
     CMAKE_CXX_COMPILER_ID STREQUAL "Clang"
@@ -117,6 +118,33 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 else()
     message(STATUS "CMAKE_CXX_COMPILER = " ${CMAKE_CXX_COMPILER})
     message(FATAL_ERROR "CMAKE_CXX_COMPILER_ID " ${CMAKE_CXX_COMPILER_ID} " not supporterd")
+endif()
+
+# ======
+# mpi4py
+# ======
+execute_process(
+    COMMAND ${PYTHON3_EXECUTABLE} -c "import mpi4py"
+    RESULT_VARIABLE EXIT_CODE_IMPORT_MPI4PY
+)
+
+if(NOT ${EXIT_CODE_IMPORT_MPI4PY} EQUAL 0)
+    message(FATAL_ERROR "Python does not have mpi4py")
+endif()
+
+execute_process(
+    COMMAND ${PYTHON3_EXECUTABLE} -c "import mpi4py as m; print(m.get_include())"
+    OUTPUT_VARIABLE MPI4PY_INCLUDE_DIR
+    RESULT_VARIABLE EXIT_CODE_MPI4PY_INCLUDES
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+if(EXIT_CODE_MPI4PY_INCLUDES EQUAL 0)
+    string(REGEX REPLACE "-I" "" MPI4PY_INCLUDE_DIR ${MPI4PY_INCLUDE_DIR})
+    string(REGEX REPLACE " " ";" MPI4PY_INCLUDE_DIR ${MPI4PY_INCLUDE_DIR})
+    message(STATUS "MPI4PY_INCLUDE_DIR ${MPI4PY_INCLUDE_DIR}")
+else()
+    message(FATAL_ERROR "mpi4py includes not found")
 endif()
 
 # =======

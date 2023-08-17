@@ -19,6 +19,9 @@ target_include_directories(time_blas_kernels
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+# ===============
+# pybind11 module
+# ===============
 add_library(pb11_time_blas_kernels MODULE)
 target_sources(pb11_time_blas_kernels
     PRIVATE
@@ -32,8 +35,6 @@ target_sources(pb11_time_blas_kernels
 target_link_libraries(pb11_time_blas_kernels
     PRIVATE
     time_blas_kernels
-
-    # ${BLAS_LIB}
 )
 target_include_directories(pb11_time_blas_kernels
     PRIVATE

@@ -2,13 +2,18 @@
 # CXX compiler
 # ============
 set(CMAKE_CXX_COMPILER mpic++ CACHE STRING "" FORCE)
-set(CMAKE_CXX_COMPILER_FLAGS "-Wall -std=c++11 -g" CACHE STRING "" FORCE)
+set(CMAKE_CXX_COMPILER_FLAGS "-Wall -std=c++11" CACHE STRING "" FORCE)
 
 # ============
 # MPI compiler
 # ============
 set(MPI_CXX_COMPILER mpic++ CACHE STRING "" FORCE)
-set(MPI_CXX_COMPILER_FLAGS "-g" CACHE STRING "" FORCE)
+set(MPI_CXX_COMPILER_FLAGS "-Wall -std=c++11" CACHE STRING "" FORCE)
+
+# ============================
+# all libs compiled with -fPIC
+# ============================
+set(CMAKE_POSITION_INDEPENDENT_CODE ON CACHE STRING "" FORCE)
 
 # ====
 # BLAS
