@@ -7,6 +7,6 @@
 
 namespace py = pybind11;
 
-double pb11_time_cblas_ddot(int niter, pybind11::array_t<double> x_pyarr, pybind11::array_t<double> y_pyarr);
+double pb11_time_blas_ddot(int niter, pybind11::array_t<double> x_pyarr, pybind11::array_t<double> y_pyarr);
 
 #endif // _PB11_TIME_BLAS_KERNELS_HPP_

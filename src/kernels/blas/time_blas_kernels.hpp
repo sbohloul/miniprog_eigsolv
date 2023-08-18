@@ -6,6 +6,6 @@
 #include "timer.hpp"
 #include <cassert>
 
-double time_cblas_ddot(const int niter, const std::vector<double> &x, const std::vector<double> &y);
+double time_blas_ddot(const int niter, const std::vector<double> &x, const std::vector<double> &y);
 
 #endif // _TIME_BLAS_KERNELS_HPP_

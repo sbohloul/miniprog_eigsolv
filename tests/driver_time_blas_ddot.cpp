@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     std::vector<double> x(nelem, 1.0);
     std::vector<double> y(nelem, 2.0);
 
-    double t = time_cblas_ddot(niter, x, y);
+    double t = time_blas_ddot(niter, x, y);
 
     std::cout << "t = " << t << std::endl;
     return 0;

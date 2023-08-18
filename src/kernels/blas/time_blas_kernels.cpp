@@ -1,6 +1,6 @@
 #include "time_blas_kernels.hpp"
 
-double time_cblas_ddot(int niter, std::vector<double> const &x, std::vector<double> const &y)
+double time_blas_ddot(int niter, std::vector<double> const &x, std::vector<double> const &y)
 {
     assert(x.size() == y.size());
 

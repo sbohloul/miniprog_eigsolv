@@ -55,5 +55,8 @@ int main(int argc, char **argv)
         std::cout << "c: " << std::endl;
         print_array(c, m, n, m);
     }
+
+    Cblacs_exit(0);
+
     return 0;
 }

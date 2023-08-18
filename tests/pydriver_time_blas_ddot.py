@@ -22,7 +22,7 @@ for n in range(stepsize, maxsize, stepsize):
     nelem.append(n)
     x = np.ones((1, n), dtype=np.float64)
     y = np.ones((1, n), dtype=np.float64)
-    t = tk.pb11_time_cblas_ddot(niter, x, y)
+    t = tk.pb11_time_blas_ddot(niter, x, y)
     t_kernel.append(t)
     print(niter, "\t", n, "\t", t)
 

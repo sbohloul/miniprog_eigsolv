@@ -3,8 +3,8 @@
 NITER=100
 STEPSIZE=10000
 MAXSIZE=1000000
-PROG=./driver_time_cblas_ddot.x
-FNAME=driver_time_cblas_ddot.txt
+PROG=./driver_time_blas_ddot.x
+FNAME=driver_time_blas_ddot.txt
 
 cat > $FNAME << EOF
 EOF

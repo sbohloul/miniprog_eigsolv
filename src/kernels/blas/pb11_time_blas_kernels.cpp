@@ -1,6 +1,6 @@
 #include <pb11_time_blas_kernels.hpp>
 
-double pb11_time_cblas_ddot(int niter, py::array_t<double> x_pyarr, py::array_t<double> y_pyarr)
+double pb11_time_blas_ddot(int niter, py::array_t<double> x_pyarr, py::array_t<double> y_pyarr)
 {
     py::buffer_info x_buf = x_pyarr.request();
     py::buffer_info y_buf = y_pyarr.request();
@@ -15,6 +15,6 @@ double pb11_time_cblas_ddot(int niter, py::array_t<double> x_pyarr, py::array_t<
     std::vector<double> x(x_ptr, x_ptr + nelem);
     std::vector<double> y(y_ptr, y_ptr + nelem);
 
-    double t_kernel = time_cblas_ddot(niter, x, y);
+    double t_kernel = time_blas_ddot(niter, x, y);
     return t_kernel;
 }
