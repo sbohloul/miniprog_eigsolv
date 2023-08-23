@@ -36,7 +36,7 @@ python -m venv venv-intel
 source venv-intel/bin/activate
 pip install --upgrade pip
 # numpy
-pip install numpy-intel
+pip install intel-numpy
 # pybind11
 pip install pybind11
 # mpi4py
