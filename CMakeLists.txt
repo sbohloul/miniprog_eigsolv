@@ -197,6 +197,6 @@ message(STATUS "SCALAPACK_DIR ${SCALAPACK_DIR}")
 
 # add directories
 add_subdirectory(src)
-add_subdirectory(tests)
+add_subdirectory(drivers)
 
 # install(FILES MathFunctions.h DESTINATION include)
