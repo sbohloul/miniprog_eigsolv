@@ -51,3 +51,5 @@ install(
     FILES pydriver_time_scalapack_pdgemm.py
     DESTINATION ${INSTALL_BIN_DIR}
 )
+
+add_subdirectory(scalapack)

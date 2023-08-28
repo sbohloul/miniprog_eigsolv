@@ -4,19 +4,23 @@
 
 double time_scalapack_pdgemm(int niter, int nprow, int npcol, const std::vector<double> &a_glb, const std::vector<double> &b_glb, std::vector<double> &c_glb, int m, int n, int mb, int nb)
 {
-    assert(a_glb.size() == m * n);
-    assert(b_glb.size() == m * n);
-    assert(c_glb.size() == m * n);
+
+    // processes info
+    int myrank, nprocs;
+    Cblacs_pinfo(&myrank, &nprocs);
+
+    if (myrank == 0)
+    {
+        assert(a_glb.size() == m * n);
+        assert(b_glb.size() == m * n);
+        assert(c_glb.size() == m * n);
+    }
 
     // general initializations
     char grid_order[] = "Row";
     int isrcproc = 0;
     int rsrc = 0;
     int csrc = 0;
-
-    // processes info
-    int myrank, nprocs;
-    Cblacs_pinfo(&myrank, &nprocs);
 
     // init blacs contexts and grids
     int ctxt_sys;
