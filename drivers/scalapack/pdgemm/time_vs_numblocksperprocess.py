@@ -18,9 +18,8 @@ def perform_analysis(args):
     # ==================================
     # blacs and kernel launch parameters
     # ==================================
-
-    outfile = args.output
-    outplot = args.plotout + ".svg"
+    outfile = args.output + ".csv"
+    outplot = args.output + ".svg"
     niter = args.niter
     mb = args.mb
     nb = args.nb
@@ -45,7 +44,7 @@ def perform_analysis(args):
     # =============
     tkernel = []
     num_blocks_per_proc = []
-    for nblk in range(1, max_num_block):
+    for nblk in range(1, max_num_block + 1):
 
         # global arrays sizes
         num_mblocks = nblk
@@ -101,18 +100,35 @@ def perform_analysis(args):
                 f"# nprocs: {nprocs}\n"
                 f"# nprow: {nprow} , npcol: {npcol}\n"
                 f"# mb: {mb}, nb: {nb}\n"
-                f"# max_num_mblocks: {num_mblocks}, # max_num_nblocks: {num_nblocks}\n"
+                f"# max_num_mblocks: {num_mblocks}, max_num_nblocks: {num_nblocks}\n"
                 f"# max_m: {m}, max_n: {n}\n"
             )
             df.to_csv(f, sep='\t', index=True,
                       header=True, float_format='%.6f')
 
+    # Plot time vs num blocks per process
     if mpirank == 0:
-        fig, ax = plt.subplots()
+
+        xlabel = "Number of blocks per process"
+        ylabel = "Time (s)"
+        title = f"pdgemm \n mb: {mb}, nb: {nb} \n max m: {m}, max n: {n}"
+
+        fig, axs = plt.subplots(1, 2, figsize=(10, 4))
+        fig.suptitle(title)
         for iproc in range(nprocs):
-            ax.plot(num_blocks_per_proc,
-                    tkernel[iproc], label="rank " + str(iproc), marker='o')
-        plt.legend()
+            axs[0].plot(num_blocks_per_proc,
+                        tkernel[iproc], label="rank " + str(iproc), marker='o')
+            axs[1].loglog(num_blocks_per_proc,
+                          tkernel[iproc], label="rank " + str(iproc), marker='o')
+
+        for ax in axs:
+            ax.set_xlabel(xlabel)
+            ax.set_ylabel(ylabel)
+            # ax.set_xticks(num_blocks_per_proc)
+            ax.grid()
+            ax.legend()
+        # plt.title(title)
+        plt.tight_layout()
         plt.savefig(outplot)
         # plt.show()
 
@@ -120,8 +136,14 @@ def perform_analysis(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="""
-        kernel: pdgemm - test number of blocks per process vs time for fixed block 
-        size and process grid.
+        kernel: 
+        - pdgemm
+        analysis:
+        - Fixed block size mb x nb
+        - Fixed process grid p x q
+        - Increases number of blocks per process up to max_num_blocks (hence global array size) and
+        measures timing
+        - The design assumes an ideal load-balancing
         """)
 
     parser.add_argument(
@@ -149,14 +171,8 @@ if __name__ == "__main__":
 
     parser.add_argument("-o", "--output",
                         type=str,
-                        help="Output file for writing the results",
-                        default="blocks_per_process_vs_time.out"
+                        help="Output file for exporting the results as text, figure, and etc",
+                        default="time_vs_numblocksperprocess"
                         )
-    parser.add_argument("-po", "--plotout",
-                        type=str,
-                        help="Create plot from data and save in PLOT",
-                        default="blocks_per_process_vs_time"
-                        )
-
     args = parser.parse_args()
     perform_analysis(args)
