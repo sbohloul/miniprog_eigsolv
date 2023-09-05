@@ -49,6 +49,7 @@ install(
 
 install(
     FILES pydriver_time_scalapack_pdgemm.py
+    FILES pydriver_time_scalapack_pdsyev.py
     DESTINATION ${INSTALL_BIN_DIR}
 )
 

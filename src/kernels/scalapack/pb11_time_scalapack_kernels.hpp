@@ -21,4 +21,12 @@ double pb11_time_scalapack_pdgemm(int niter,
                                   int m, int n,
                                   int mb, int nb);
 
+double pb11_time_scalapack_pdsyev(int niter,
+                                  const int nprow, const int npcol,
+                                  py::array_t<double> a_pyarr,
+                                  py::array_t<double> eigval_pyarr,
+                                  py::array_t<double> eigvec_pyarr,
+                                  int m,
+                                  int mb, int nb);
+
 #endif

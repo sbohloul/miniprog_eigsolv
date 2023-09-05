@@ -18,6 +18,7 @@ extern "C"
 #define numroc numroc_
 #define descinit descinit_
 #define pdgemm pdgemm_
+#define pdsyev pdsyev_
 #endif
 
     // Initialization
@@ -88,6 +89,9 @@ extern "C"
                 const double *b, const int *ib, const int *jb, const int *descb,
                 const double *beta,
                 double *c, const int *ic, const int *jc, const int *descc);
+
+    // SCALAPCK
+    void pdsyev(const char *jobz, const char *uplo, const MKL_INT *n, const double *a, const MKL_INT *ia, const MKL_INT *ja, const MKL_INT *desca, double *w, double *z, const MKL_INT *iz, const MKL_INT *jz, const MKL_INT *descz, double *work, const MKL_INT *lwork, MKL_INT *info);
 
 #ifdef __cplusplus
 }

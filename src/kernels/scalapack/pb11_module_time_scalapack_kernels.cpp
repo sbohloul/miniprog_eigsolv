@@ -26,4 +26,5 @@ PYBIND11_MODULE(pb11_time_scalapack_kernels, m)
     // m.def("mpi_my_rank", &mpi_my_rank, "Get mpi rank.");
 
     m.def("pb11_time_scalapack_pdgemm", &pb11_time_scalapack_pdgemm, "time pdgemm");
+    m.def("pb11_time_scalapack_pdsyev", &pb11_time_scalapack_pdsyev, "time pdsyev");
 }
