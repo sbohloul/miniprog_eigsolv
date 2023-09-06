@@ -1,1 +1,2 @@
 add_subdirectory(pdgemm)
+add_subdirectory(pdsyev)
