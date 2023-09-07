@@ -1,7 +1,6 @@
 from mpi4py import MPI
 import pb11_time_scalapack_kernels as pb11tsk
 import numpy as np
-from scipy.linalg import eigh, eig
 import matplotlib.pyplot as plt
 import pandas as pd
 import argparse
@@ -30,12 +29,23 @@ def perform_analysis(args):
     niter = args.niter
     mb_max = args.mb
     nb_max = args.nb
-    nprow = args.nprow
-    npcol = args.npcol
     fname = args.inputfile
     #
-    nprocs = nprow * npcol
+    nprocs = mpisize
     m = None
+
+    # =====================
+    # Get factors of nprocs
+    # =====================
+    nprocs_factors = [[1, nprocs]]
+    for i in range(2, int(np.sqrt(nprocs))+1):
+        if nprocs % i == 0:
+            r = nprocs // i
+            nprocs_factors.append([i, r])
+    # possible process grid
+    proc_grid = nprocs_factors
+    for p, q in nprocs_factors[::-1]:
+        proc_grid.append([q, p])
 
     # =============================
     # Check whether inputfile exist
@@ -89,23 +99,13 @@ def perform_analysis(args):
         if mpirank == 0:
             print("DRY-RUN ----------")
             print(f"niter: {niter} \n"
-                  f"nprow: {nprow}, npcol: {npcol}\n"
                   f"mb_max: {mb_max}, nb_max: {nb_max}\n"
                   f"mb: {mb_list}\n"
                   f"nb: {nb_list}\n"
-                  f"inputfile: {fname}"
+                  f"inputfile: {fname}\n"
+                  f"proc_grid: {proc_grid}"
                   )
         return
-
-    # ===================
-    # Verify process grid
-    # ===================
-    if (mpisize != nprocs):
-        if mpirank == 0:
-            raise ValueError(
-                f"mpisize: {mpisize} != (npcol * nprow): {nprocs}")
-        else:
-            exit()
 
     # ============
     # Input arrays
@@ -117,6 +117,8 @@ def perform_analysis(args):
         m = h.shape[0]
         print(f"m: {m}")
 
+        # convert generalized eig problem to standard
+        # A x = l B x -> L^-1 A L^-1^T x = l x
         Linv = np.linalg.inv(np.linalg.cholesky(o))
         a = np.dot(Linv, h)
         a = np.dot(a, Linv.T)
@@ -134,59 +136,93 @@ def perform_analysis(args):
     # =============
     # Launch kernel
     # =============
-    tkernel = []
+    # [ [(mb, nb), [[rank0], [rank1], ...]], ... ]
+    # [rank0] = [t0, t1, t2, ..., tn], n = len(proc_grid)
+    data_all = []
     for mb, nb in zip(mb_list, nb_list):
-        t_tmp = pb11tsk.pb11_time_scalapack_pdsyev(
-            niter, nprow, npcol, a, eigval, eigvec, m, mb, nb)
-        tkernel.append(t_tmp)
-
-    # Gathe all timings in rank 0
-    tkernel = mpicomm.gather(tkernel, root=0)
+        tkernel = []
+        for p, q in proc_grid:
+            nprow = p
+            npcol = q
+            t_tmp = pb11tsk.pb11_time_scalapack_pdsyev(
+                niter, nprow, npcol, a, eigval, eigvec, m, mb, nb)
+            tkernel.append(t_tmp)
+        # Gather all timings in rank 0
+        tkernel = mpicomm.gather(tkernel, root=0)
+        # [(mb, nb), [[rank0], [rank1], ...]]
+        data_all.append([[mb, nb], tkernel])
 
     # ==============
     # Output results
     # ==============
     # write data to output
+    index_tuple = []
     if mpirank == 0:
-        df = pd.DataFrame(tkernel, columns=[x for x in mb_list])
-        df.index.name = 'rank'
-        df.columns.name = 'blocksize'
+        df = pd.DataFrame()
+        for data_blk in data_all:
+            mb, nb = data_blk[0]
+            tkernel = data_blk[1]
+            # update tuple for multi-index
+            for i in range(nprocs):
+                index_tuple.append(((mb, nb), i))
+            #
+            current_df = pd.DataFrame(
+                tkernel, columns=[(p, q) for p, q in proc_grid])
+            #
+            df = pd.concat([df, current_df], ignore_index=False)
+
+        # df.index.name = 'rank'
+        index = pd.MultiIndex.from_tuples(index_tuple,
+                                          names=['blocksize', 'rank'])
+        df.set_index(index, inplace=True)
+        df.columns.name = 'processgrid'
         print(df)
         with open(outfile, 'w') as f:
             f.write(
-                "# time vs block size\n"
+                "# time vs process grid shape\n"
                 f"# nprocs: {nprocs}\n"
-                f"# nprow: {nprow} , npcol: {npcol}\n"
+                f"# mb: {mb_list} , nb: {nb_list}\n"
                 f"# mb_max: {mb_max}, nb_max: {nb_max}\n"
                 f"# m: {m}\n"
+                f"# process grid: {proc_grid}\n"
+                f"\n"
             )
             df.to_csv(f, sep='\t', index=True,
                       header=True, float_format='%.6f')
 
     # Plot time vs block size
     if mpirank == 0:
-        xlabel = "Block size"
-        ylabel = "Time (s)"
+        xdata = [i+1 for i in range(len(proc_grid))]
+
+        xlabel = "p"
+        ylabel = "q"
+        zlabel = "Time (s)"
         title = f"pdsyev \n mb: {mb}, nb: {nb} \n m: {m}"
 
-        fig, axs = plt.subplots(1, 2, figsize=(10, 4))
+        nfigcols = 2
+        nfigrows = len(data_all) // nfigcols + 1
+        fig, axs = plt.subplots(
+            nfigrows, nfigcols
+        )
         fig.suptitle(title)
-        for iproc in range(nprocs):
-            axs[0].plot(
-                mb_list, tkernel[iproc],
-                label="rank " + str(iproc),
-                marker='o'
-            )
-            axs[1].loglog(
-                mb_list, tkernel[iproc],
-                label="rank " + str(iproc),
-                marker='o'
-            )
-        for ax in axs:
-            ax.set_xlabel(xlabel)
-            ax.set_ylabel(ylabel)
-            ax.grid()
-            ax.legend()
+        axs = axs.flatten()
+        for iax, data_blk in enumerate(data_all):
+            mb, nb = data_blk[0]
+            tkernel = data_blk[1]
+            ax = axs[iax]
+            for iproc in range(nprocs):
+                zdata = tkernel[iproc]
+                ax.plot(
+                    xdata, zdata,
+                    label="rank " + str(iproc),
+                    marker='o'
+                )
+
+                ax.set_xlabel(xlabel)
+                ax.set_ylabel(ylabel)
+                # ax.set_zlabel(zlabel)
+                ax.grid()
+                # ax.legend()
         plt.tight_layout()
         plt.savefig(outplot)
         plt.show()
@@ -199,10 +235,9 @@ if __name__ == "__main__":
         - pdsyev
         analysis:
         - It reads corresponding Hamiltonian and Overlap matrix from hdf5 input file
-        - Measure timing for varying block size mb x nb where max_mb and max_nb are passed as input
+        - Measure timing for all possible p x q grids for a given nprocs
         - mb = [64, 128, 256, ..., max_mb]
         - nb = [64, 128, 256, ..., max_nb]
-        - Process grid p x q is passes as inputs
         """,
         formatter_class=argparse.RawTextHelpFormatter
     )
@@ -212,20 +247,14 @@ if __name__ == "__main__":
     parser.add_argument("mb",
                         type=int,
                         help="Maximum number of rows in the block",
-                        choices=[8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
+                        choices=[8, 16, 32, 64, 128,
+                                 256, 512, 1024, 2048, 4096]
                         )
     parser.add_argument("nb",
                         type=int,
                         help="Maximum number of columns in the block",
-                        choices=[8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
-                        )
-    parser.add_argument("nprow",
-                        type=int,
-                        help="Number of rows in process grid"
-                        )
-    parser.add_argument("npcol",
-                        type=int,
-                        help="Number of columns in process grid"
+                        choices=[8, 16, 32, 64, 128,
+                                 256, 512, 1024, 2048, 4096]
                         )
     parser.add_argument("inputfile",
                         type=str,
@@ -235,7 +264,7 @@ if __name__ == "__main__":
     parser.add_argument("-o", "--output",
                         type=str,
                         help="Output file for exporting the results as text, figure, and etc",
-                        default="time_vs_blocksize"
+                        default="time_vs_gridshape"
                         )
     parser.add_argument('--dry-run',
                         action='store_true',

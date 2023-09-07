@@ -104,7 +104,7 @@ double time_scalapack_pdgemm(int niter, int nprow, int npcol, const std::vector<
         timer.stop();
         t_kernel += timer.duration();
     }
-    // double t_kernel = 1.0;
+    t_kernel /= niter;
 
     // gather local C in global C
     Cpdgemr2d(m, n,
@@ -257,6 +257,7 @@ double time_scalapack_pdsyev(int niter, int nprow, int npcol, const std::vector<
         timer.stop();
         t_kernel += timer.duration();
     }
+    t_kernel /= niter;
 
     // gather local eigvec in global eigvec
     Cpdgemr2d(m, m,
