@@ -192,23 +192,24 @@ def perform_analysis(args):
 
     # Plot time vs block size
     if mpirank == 0:
-        xdata = [i+1 for i in range(len(proc_grid))]
-
-        xlabel = "p"
-        ylabel = "q"
-        zlabel = "Time (s)"
-        title = f"pdsyev \n mb: {mb}, nb: {nb} \n m: {m}"
+        fig_block_size = (4, 4)
+        title = f"pdsyev, {os.path.basename(fname)}, m: {m}"
+        xdata = [i+1 for i in range(len(proc_grid))]    # process grid
+        xlabel = "Process grid"
+        ylabel = "Time (s)"
+        xtickslabel = [f"({p}, {q})" for p, q in proc_grid]
 
         nfigcols = 2
         nfigrows = len(data_all) // nfigcols + 1
         fig, axs = plt.subplots(
-            nfigrows, nfigcols
+            nfigrows, nfigcols, figsize=(fig_block_size[0]*nfigcols, fig_block_size[1]*nfigrows)
         )
         fig.suptitle(title)
         axs = axs.flatten()
         for iax, data_blk in enumerate(data_all):
             mb, nb = data_blk[0]
             tkernel = data_blk[1]
+            ax_title = f"blocksize: {mb} x {nb}"
             ax = axs[iax]
             for iproc in range(nprocs):
                 zdata = tkernel[iproc]
@@ -218,13 +219,27 @@ def perform_analysis(args):
                     marker='o'
                 )
 
-                ax.set_xlabel(xlabel)
-                ax.set_ylabel(ylabel)
-                # ax.set_zlabel(zlabel)
-                ax.grid()
-                # ax.legend()
+            ax.set_xlabel(xlabel)
+            ax.set_ylabel(ylabel)
+            ax.set_title(ax_title)
+            ax.set_xticks(xdata)
+            ax.set_xticklabels(xtickslabel)
+            ax.grid()
+            ax.legend()
         plt.tight_layout()
         plt.savefig(outplot)
+
+        # visualize matrices
+        fig, axs = plt.subplots(1, 3, figsize=(12, 4))
+        axs[0].spy(h, precision=1.0e-10)
+        axs[0].set_title('h')
+        axs[1].spy(o, precision=1.0e-10)
+        axs[1].set_title('o')
+        axs[2].spy(a.reshape(m, m), precision=1.0e-10)
+        axs[2].set_title('w')
+        plt.tight_layout()
+        plt.savefig('spy_arrays.svg')
+
         plt.show()
 
 
