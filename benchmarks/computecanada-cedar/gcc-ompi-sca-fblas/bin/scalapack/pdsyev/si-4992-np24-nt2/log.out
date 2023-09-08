@@ -1,0 +1,82 @@
+/scratch/sbohloul/benchminiapp/data/Si_4992_HR.h5 exists
+/scratch/sbohloul/benchminiapp/data/Si_4992_HR.h5 can be read
+m: 4992
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.34565
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.90183
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.7889
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.73152
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.99143
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.74346
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.05382
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 10.4681
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.06647
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.67172
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.33177
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.13565
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.25807
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.80296
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.43959
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.39582
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.44544
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.42795
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.3519
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.01667
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.0726
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.4698
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.71266
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.84788
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.87043
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.67249
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.34013
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.23626
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.24236
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.56031
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.7903
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.6103
+processgrid      (1, 24)   (2, 12)    (3, 8)  ...    (8, 3)   (12, 2)    (24, 1)
+blocksize rank                                ...                               
+(8, 8)    0     7.345654  6.901827  6.788901  ...  7.743460  8.053821  10.468143
+          1     7.344442  6.904297  6.795913  ...  7.774585  8.104782  10.471492
+          2     7.347102  6.910822  6.806858  ...  7.810055  8.054909  10.474698
+          3     7.348912  6.915707  6.818062  ...  7.744012  8.109567  10.479216
+          4     7.351726  6.922053  6.827995  ...  7.779198  8.059348  10.483665
+...                  ...       ...       ...  ...       ...       ...        ...
+(64, 64)  19    7.914427  6.715749  6.370839  ...  6.600746  6.853198   9.668862
+          20    7.916868  6.721227  6.380027  ...  6.627554  6.818216   9.671635
+          21    7.918435  6.726682  6.390575  ...  6.579048  6.858248   9.674244
+          22    7.920995  6.732631  6.399949  ...  6.603024  6.821948   9.677508
+          23    7.923383  6.738200  6.410224  ...  6.631818  6.861888   9.679708
+
+[96 rows x 8 columns]
