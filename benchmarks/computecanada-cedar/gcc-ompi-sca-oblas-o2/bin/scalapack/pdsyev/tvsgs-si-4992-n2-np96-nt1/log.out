@@ -1,0 +1,138 @@
+/scratch/sbohloul/benchminiapp/data/Si_4992_HR.h5 exists
+/scratch/sbohloul/benchminiapp/data/Si_4992_HR.h5 can be read
+m: 4992
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.40729
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.78139
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.47491
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 4.83829
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 4.86989
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 4.82689
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 4.8663
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.18787
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.47823
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.96734
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.09066
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 10.4822
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.96065
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.10084
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.83336
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.16559
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.05636
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 4.99405
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.03542
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.28645
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.51578
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.58896
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.99729
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.31245
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.32236
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.50114
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.9884
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.35552
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.12823
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.17028
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.26039
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.31189
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.62255
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.94495
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.26696
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.41871
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 11.8394
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.84347
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.67907
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.20624
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.8117
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.55866
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.55573
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.70361
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.87793
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.51867
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.16661
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 10.3892
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 19.0929
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 14.8561
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 13.4517
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 12.7837
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 11.9978
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 11.9633
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 12.054
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 12.1691
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 12.0838
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 12.52
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 13.223
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 16.7572
+processgrid        (1, 96)    (2, 48)  ...    (48, 2)    (96, 1)
+blocksize  rank                        ...                      
+(8, 8)     0      7.407287   5.781392  ...   6.090657  10.482232
+           1      7.407036   5.782023  ...   6.153560  10.483254
+           2      7.407856   5.784154  ...   6.091877  10.484558
+           3      7.408438   5.785559  ...   6.154656  10.485719
+           4      7.409215   5.787909  ...   6.092844  10.487081
+...                    ...        ...  ...        ...        ...
+(128, 128) 91    19.160259  14.944440  ...  13.307895  16.840686
+           92    19.160253  14.944445  ...  13.307887  16.840697
+           93    19.160262  14.944447  ...  13.307897  16.840681
+           94    19.160250  14.944446  ...  13.307885  16.840691
+           95    19.160256  14.944436  ...  13.307888  16.840690
+
+[480 rows x 12 columns]

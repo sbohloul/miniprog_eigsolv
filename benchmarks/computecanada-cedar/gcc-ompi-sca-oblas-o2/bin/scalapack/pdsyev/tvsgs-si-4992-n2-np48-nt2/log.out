@@ -1,0 +1,118 @@
+/scratch/sbohloul/benchminiapp/data/Si_4992_HR.h5 exists
+/scratch/sbohloul/benchminiapp/data/Si_4992_HR.h5 can be read
+m: 4992
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 10.141
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.52575
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.39594
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.9069
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.04093
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.38166
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.40175
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.70842
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.10734
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 11.8794
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 10.0112
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.57094
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.37735
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.13452
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.95742
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.10286
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.36127
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.71306
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.09466
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 10.8236
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 10.9926
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.54511
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.10743
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.87978
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.69371
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.03561
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.07423
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.01702
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.78616
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 11.4139
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 12.5927
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.95339
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 10.0107
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.03135
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.92217
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.69752
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.91003
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.1674
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 10.0026
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 11.5935
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 14.6088
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 13.1313
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 12.4032
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 11.8393
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 11.4912
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 11.1079
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 11.5064
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 11.6471
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 12.2791
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 13.762
+processgrid        (1, 48)    (2, 24)  ...    (24, 2)    (48, 1)
+blocksize  rank                        ...                      
+(8, 8)     0     10.141015   8.525753  ...   9.107337  11.879399
+           1     10.140816   8.527467  ...   9.171226  11.881664
+           2     10.142573   8.530569  ...   9.108333  11.884191
+           3     10.144425   8.534750  ...   9.174487  11.886538
+           4     10.144871   8.538172  ...   9.110353  11.889138
+...                    ...        ...  ...        ...        ...
+(128, 128) 43    14.683474  13.214354  ...  12.369511  13.855549
+           44    14.683483  13.217227  ...  12.324341  13.855563
+           45    14.683476  13.219339  ...  12.372211  13.855546
+           46    14.683475  13.221466  ...  12.324697  13.855564
+           47    14.683478  13.224388  ...  12.372622  13.855553
+
+[240 rows x 10 columns]
