@@ -111,6 +111,7 @@ def perform_analysis(args):
     # Input arrays
     # ============
     if (mpirank == 0):
+        print(f"Preparing input arrays ...")
         f = h5py.File(fname, 'r')
         h = f['hamiltonian']['total_gamma'][:]
         o = f['hamiltonian']['overlap_gamma'][:]
@@ -142,6 +143,8 @@ def perform_analysis(args):
     for mb, nb in zip(mb_list, nb_list):
         tkernel = []
         for p, q in proc_grid:
+            if mpirank == 0:
+                print(f"Running kernel for mb: {mb}, nb: {nb}, p: {p}, q: {q}")
             nprow = p
             npcol = q
             t_tmp = pb11tsk.pb11_time_scalapack_pdsyev(
@@ -223,20 +226,26 @@ def perform_analysis(args):
             ax.set_ylabel(ylabel)
             ax.set_title(ax_title)
             ax.set_xticks(xdata)
-            ax.set_xticklabels(xtickslabel)
+            ax.set_xticklabels(xtickslabel, rotation=45)
             ax.grid()
-            ax.legend()
+            leg_handles, leg_labels = ax.get_legend_handles_labels()
+            selected_handles = leg_handles[:5]
+            selected_labels = leg_labels[:5]
+            ax.legend(selected_handles, selected_labels)
         plt.tight_layout()
         plt.savefig(outplot)
 
         # visualize matrices
-        fig, axs = plt.subplots(1, 3, figsize=(12, 4))
+        fig, axs = plt.subplots(1, 4, figsize=(12, 4))
         axs[0].spy(h, precision=1.0e-10)
         axs[0].set_title('h')
         axs[1].spy(o, precision=1.0e-10)
         axs[1].set_title('o')
         axs[2].spy(a.reshape(m, m), precision=1.0e-10)
-        axs[2].set_title('w')
+        axs[2].set_title('L_inv*h*L_inv.T')
+        axs[3].spy(Linv, precision=1.0e-10)
+        axs[3].set_title('Linv')
+
         plt.tight_layout()
         plt.savefig('spy_arrays.svg')
 
