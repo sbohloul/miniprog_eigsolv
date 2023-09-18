@@ -1,0 +1,48 @@
+/scratch/sbohloul/benchminiapp/data/Si_10400_HR.h5 exists
+/scratch/sbohloul/benchminiapp/data/Si_10400_HR.h5 can be read
+Preparing input arrays ...
+m: 10400
+Running kernel for mb: 8, nb: 8, p: 1, q: 96
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 43.6073
+Running kernel for mb: 8, nb: 8, p: 2, q: 48
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 37.2808
+Running kernel for mb: 8, nb: 8, p: 3, q: 32
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 36.6447
+Running kernel for mb: 8, nb: 8, p: 4, q: 24
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 34.02
+Running kernel for mb: 8, nb: 8, p: 6, q: 16
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 36.6812
+Running kernel for mb: 8, nb: 8, p: 8, q: 12
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 34.1856
+Running kernel for mb: 8, nb: 8, p: 12, q: 8
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 35.1814
+Running kernel for mb: 8, nb: 8, p: 16, q: 6
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 36.8161
+Running kernel for mb: 8, nb: 8, p: 24, q: 4
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 39.3727
+Running kernel for mb: 8, nb: 8, p: 32, q: 3
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 40.5392
+Running kernel for mb: 8, nb: 8, p: 48, q: 2
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 43.3856
+Running kernel for mb: 8, nb: 8, p: 96, q: 1
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 59.6902
+Running kernel for mb: 16, nb: 16, p: 1, q: 96
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 44.9663
+Running kernel for mb: 16, nb: 16, p: 2, q: 48
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 36.7004
+Running kernel for mb: 16, nb: 16, p: 3, q: 32
+Inside pb11_time_scalapack_pdsyev

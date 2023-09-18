@@ -17,6 +17,3 @@ mpiexec -np $NP python time_vs_gridshape.py $NITER $MB $NB $FNAME | tee log.out
 mkdir $RESULTSDIR
 lscpu | tee lscpu.log
 mv *.svg *.csv *.out *.log $RESULTSDIR
-
-
-

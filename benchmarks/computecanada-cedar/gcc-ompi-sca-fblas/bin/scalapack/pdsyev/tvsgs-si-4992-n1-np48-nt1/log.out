@@ -1,0 +1,169 @@
+/scratch/sbohloul/benchminiapp/data/Si_4992_HR.h5 exists
+/scratch/sbohloul/benchminiapp/data/Si_4992_HR.h5 can be read
+Preparing input arrays ...
+m: 4992
+Running kernel for mb: 8, nb: 8, p: 1, q: 48
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.40728
+Running kernel for mb: 8, nb: 8, p: 2, q: 24
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.23903
+Running kernel for mb: 8, nb: 8, p: 3, q: 16
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.12023
+Running kernel for mb: 8, nb: 8, p: 4, q: 12
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.78594
+Running kernel for mb: 8, nb: 8, p: 6, q: 8
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.97114
+Running kernel for mb: 8, nb: 8, p: 8, q: 6
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.65525
+Running kernel for mb: 8, nb: 8, p: 12, q: 4
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.54681
+Running kernel for mb: 8, nb: 8, p: 16, q: 3
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.8417
+Running kernel for mb: 8, nb: 8, p: 24, q: 2
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.46902
+Running kernel for mb: 8, nb: 8, p: 48, q: 1
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 10.4892
+Running kernel for mb: 16, nb: 16, p: 1, q: 48
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.49657
+Running kernel for mb: 16, nb: 16, p: 2, q: 24
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.33703
+Running kernel for mb: 16, nb: 16, p: 3, q: 16
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.15935
+Running kernel for mb: 16, nb: 16, p: 4, q: 12
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.77171
+Running kernel for mb: 16, nb: 16, p: 6, q: 8
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.90181
+Running kernel for mb: 16, nb: 16, p: 8, q: 6
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.88249
+Running kernel for mb: 16, nb: 16, p: 12, q: 4
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.19251
+Running kernel for mb: 16, nb: 16, p: 16, q: 3
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.75382
+Running kernel for mb: 16, nb: 16, p: 24, q: 2
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.25813
+Running kernel for mb: 16, nb: 16, p: 48, q: 1
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.37238
+Running kernel for mb: 32, nb: 32, p: 1, q: 48
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.11048
+Running kernel for mb: 32, nb: 32, p: 2, q: 24
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.53858
+Running kernel for mb: 32, nb: 32, p: 3, q: 16
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.98739
+Running kernel for mb: 32, nb: 32, p: 4, q: 12
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.67345
+Running kernel for mb: 32, nb: 32, p: 6, q: 8
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.66694
+Running kernel for mb: 32, nb: 32, p: 8, q: 6
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 5.87034
+Running kernel for mb: 32, nb: 32, p: 12, q: 4
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.21159
+Running kernel for mb: 32, nb: 32, p: 16, q: 3
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.46396
+Running kernel for mb: 32, nb: 32, p: 24, q: 2
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.059
+Running kernel for mb: 32, nb: 32, p: 48, q: 1
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.5491
+Running kernel for mb: 64, nb: 64, p: 1, q: 48
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.87431
+Running kernel for mb: 64, nb: 64, p: 2, q: 24
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.49019
+Running kernel for mb: 64, nb: 64, p: 3, q: 16
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.14359
+Running kernel for mb: 64, nb: 64, p: 4, q: 12
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.65296
+Running kernel for mb: 64, nb: 64, p: 6, q: 8
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.52859
+Running kernel for mb: 64, nb: 64, p: 8, q: 6
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.54158
+Running kernel for mb: 64, nb: 64, p: 12, q: 4
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 6.74776
+Running kernel for mb: 64, nb: 64, p: 16, q: 3
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.14875
+Running kernel for mb: 64, nb: 64, p: 24, q: 2
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 11.8501
+Running kernel for mb: 64, nb: 64, p: 48, q: 1
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 10.0429
+Running kernel for mb: 128, nb: 128, p: 1, q: 48
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 12.42
+Running kernel for mb: 128, nb: 128, p: 2, q: 24
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.54938
+Running kernel for mb: 128, nb: 128, p: 3, q: 16
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.11482
+Running kernel for mb: 128, nb: 128, p: 4, q: 12
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.55075
+Running kernel for mb: 128, nb: 128, p: 6, q: 8
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.34692
+Running kernel for mb: 128, nb: 128, p: 8, q: 6
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.30623
+Running kernel for mb: 128, nb: 128, p: 12, q: 4
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 7.70197
+Running kernel for mb: 128, nb: 128, p: 16, q: 3
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 8.31077
+Running kernel for mb: 128, nb: 128, p: 24, q: 2
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 9.93576
+Running kernel for mb: 128, nb: 128, p: 48, q: 1
+Inside pb11_time_scalapack_pdsyev
+t_kernel = 10.8842
+processgrid        (1, 48)   (2, 24)   (3, 16)  ...   (16, 3)    (24, 2)    (48, 1)
+blocksize  rank                                 ...                                
+(8, 8)     0      7.407276  6.239031  6.120232  ...  6.841699   7.469017  10.489205
+           1      7.405644  6.241728  6.123338  ...  6.878664   7.525058  10.490325
+           2      7.406815  6.244781  6.127898  ...  6.916523   7.470993  10.492677
+           3      7.408042  6.247942  6.133843  ...  6.843015   7.527287  10.494937
+           4      7.409158  6.250956  6.139716  ...  6.880658   7.473898  10.497202
+...                    ...       ...       ...  ...       ...        ...        ...
+(128, 128) 43    12.482749  9.613598  8.168725  ...  8.353085  10.006936  10.958517
+           44    12.482774  9.615282  8.172333  ...  8.381892   9.970676  10.958541
+           45    12.482769  9.616924  8.175780  ...  8.331524  10.007866  10.958511
+           46    12.482763  9.618638  8.181298  ...  8.357134   9.971691  10.958525
+           47    12.482770  9.620439  8.186125  ...  8.381777  10.008726  10.958528
+
+[240 rows x 10 columns]
